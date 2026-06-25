@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PensionManagement.API.Data;
+using PensionManagement.API.Models;
 
 namespace PensionManagement.API.Controllers
 {
@@ -18,6 +19,14 @@ namespace PensionManagement.API.Controllers
         {
           var employees=_context.Employees.ToList();
            return Ok(employees);
+        }
+
+        [HttpPost]
+        public IActionResult AddEmployee(Employee employee)
+        {
+            _context.Employees.Add(employee);
+            _context.SaveChanges();
+            return Ok(employee);
         }
     }
 }
